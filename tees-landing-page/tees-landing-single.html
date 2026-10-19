@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tees Online Doctor | Regulated online doctor and treatment delivered to your door</title>
+<meta name="description" content="Speak to a UK-registered clinician online and get treatment delivered discreetly to your door. CQC regulated. Weight management, men's and women's health, skin, travel and everyday conditions.">
+<link rel="canonical" href="https://www.teesonlinedoc.co.uk/">
+<meta property="og:title" content="Tees Online Doctor — healthcare that fits your life">
+<meta property="og:description" content="Online consultations with UK-registered clinicians. Discreet delivery. No waiting rooms.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Tees Online Doctor — Landing page
+   Structure and class names follow the Devflow Webflow + Lumos style guide:
+   page_wrap > page_main > section_* > u-container, u- utilities, is- combos.
+   All values are tokens (CSS variables) — no raw colours in components.
+   ============================================================ */
+
+:root {
+  /* palette (raw) */
+  --swatch-forest-900: #073D2E;
+  --swatch-forest-700: #0B5D46;
+  --swatch-forest-100: #E7F4EF;
+  --swatch-forest-50:  #F3FAF7;
+  --swatch-navy-900:   #0B2340;
+  --swatch-terracotta-700: #B85A34;   /* AA with white text */
+  --swatch-terracotta-800: #9A4A28;
+  --swatch-terracotta-100: #FBEAE0;
+  --swatch-sand-100:   #F7F5EF;
+  --swatch-gold-500:   #C69A3B;
+  --swatch-white:      #FFFFFF;
+  --swatch-mint-100:   #E6F4EF;
+  --swatch-grey-100:   #F2F3F1;
+  --swatch-ink:        #182A22;
+  --swatch-ink-soft:   #4B5D55;
+  --swatch-line:       #DDE3DF;
+
+  /* semantic */
+  --color-bg: var(--swatch-white);
+  --color-bg-alt: var(--swatch-sand-100);
+  --color-text: var(--swatch-ink);
+  --color-text-soft: var(--swatch-ink-soft);
+  --color-heading: var(--swatch-navy-900);
+  --color-primary: var(--swatch-forest-700);
+  --color-primary-dark: var(--swatch-forest-900);
+  --color-primary-tint: var(--swatch-forest-100);
+  --color-cta: var(--swatch-terracotta-700);
+  --color-cta-hover: var(--swatch-terracotta-800);
+  --color-border: var(--swatch-line);
+  --color-focus: var(--swatch-navy-900);
+
+  /* type */
+  --font-heading: 'Sora', 'Segoe UI', Arial, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', Arial, sans-serif;
+  --text-h1: clamp(2.25rem, 1.6rem + 2.8vw, 3.75rem);
+  --text-h2: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --text-h3: 1.25rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --line-height-body: 1.6;
+
+  /* space, shape, width */
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4.5rem;
+  --radius-small: 0.5rem; --radius-medium: 0.75rem; --radius-large: 1.125rem; --radius-xl: 1.75rem; --radius-pill: 999px;
+  --shadow-soft: 0 4px 18px rgba(11,35,64,.07);
+  --shadow-card: 0 10px 30px rgba(11,35,64,.10);
+  --max-width-main: 76rem;
+  --nav-height: 4rem;
+
+  /* accessibility widget hooks */
+  --a11y-font-scale: 1; --a11y-letter-spacing: normal; --a11y-line-height: 1.6;
+}
+
+*,*::before,*::after { box-sizing: border-box; }
+html { font-size: calc(100% * var(--a11y-font-scale)); scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 1rem); }
+body { margin: 0; font-family: var(--font-body); font-size: var(--text-body); color: var(--color-text); background: var(--color-bg);
+  line-height: var(--a11y-line-height); letter-spacing: var(--a11y-letter-spacing); -webkit-font-smoothing: antialiased; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1,h2,h3,h4,p { margin: 0; }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; border-radius: 4px; }
+.skip-link { position: absolute; left: -999px; top: 0; z-index: 400; background: var(--color-heading); color: #fff; padding: var(--space-3) var(--space-5); border-radius: 0 0 var(--radius-small) 0; }
+.skip-link:focus { left: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- utilities (u-) ---------- */
+.u-container { width: 100%; max-width: var(--max-width-main); margin-inline: auto; padding-inline: var(--space-5); }
+.u-vflex { display: flex; flex-direction: column; }
+.u-hflex { display: flex; flex-wrap: wrap; align-items: center; }
+.u-gap-2 { gap: var(--space-2); } .u-gap-3 { gap: var(--space-3); } .u-gap-4 { gap: var(--space-4); } .u-gap-5 { gap: var(--space-5); } .u-gap-6 { gap: var(--space-6); }
+.u-text-center { text-align: center; }
+.u-text-style-h1 { font-family: var(--font-heading); font-size: var(--text-h1); line-height: 1.08; font-weight: 700; color: var(--color-heading); letter-spacing: -0.02em; }
+.u-text-style-h2 { font-family: var(--font-heading); font-size: var(--text-h2); line-height: 1.15; font-weight: 700; color: var(--color-heading); letter-spacing: -0.015em; }
+.u-text-style-h3 { font-family: var(--font-heading); font-size: var(--text-h3); line-height: 1.3; font-weight: 600; color: var(--color-heading); }
+.u-text-style-eyebrow { font-family: var(--font-heading); font-size: var(--text-small); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-primary); }
+.u-text-soft { color: var(--color-text-soft); }
+.u-max-width-40ch { max-width: 40ch; } .u-max-width-56ch { max-width: 56ch; } .u-max-width-65ch { max-width: 65ch; }
+.u-margin-auto { margin-inline: auto; }
+.u-theme-dark { background: var(--color-primary-dark); color: #fff; }
+.u-theme-dark .u-text-style-h2, .u-theme-dark .u-text-style-h3 { color: #fff; }
+
+/* ---------- button ---------- */
+.button_main { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 3rem; padding: .7rem 1.6rem;
+  font-family: var(--font-heading); font-weight: 600; font-size: .975rem; line-height: 1.2; border-radius: var(--radius-pill);
+  border: 2px solid var(--color-heading); background: var(--color-heading); color: #fff; cursor: pointer; transition: background .15s, color .15s, border-color .15s, transform .15s; }
+.button_main:hover { background: var(--color-primary); border-color: var(--color-primary); transform: translateY(-1px); }
+.button_main.is-outline { background: #fff; color: var(--color-heading); border-color: var(--color-heading); }
+.button_main.is-outline:hover { background: var(--color-heading); color: #fff; }
+.button_main.is-accent { background: var(--color-cta); border-color: var(--color-cta); }
+.button_main.is-accent:hover { background: var(--color-cta-hover); border-color: var(--color-cta-hover); }
+.button_main.is-light { background: #fff; border-color: #fff; color: var(--color-primary-dark); }
+.button_main.is-light:hover { background: var(--swatch-mint-100); border-color: var(--swatch-mint-100); }
+.button_main.is-ghost-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.75); }
+.button_main.is-ghost-light:hover { background: rgba(255,255,255,.14); }
+.button_main.is-small { min-height: 2.5rem; padding: .45rem 1.1rem; font-size: .9rem; }
+.icon { width: 1.25rem; height: 1.25rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* ---------- header: login left, logo centre, menu right (Phlo-style) ---------- */
+.nav_wrap { position: sticky; top: 0; z-index: 100; background: #fff; border-bottom: 1px solid var(--color-border); }
+.nav_inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: var(--nav-height); gap: var(--space-4); }
+.nav_login { justify-self: start; }
+.nav_brand { display: flex; align-items: center; gap: var(--space-3); justify-self: center; }
+.nav_brand-mark { width: 2.25rem; height: 2.25rem; border-radius: .6rem; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark)); color: #fff; display: grid; place-items: center; font-family: var(--font-heading); font-weight: 700; }
+.nav_brand-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; color: var(--color-heading); line-height: 1.1; }
+.nav_brand-sub { display: none; }
+.nav_actions { justify-self: end; display: flex; align-items: center; gap: var(--space-3); }
+.nav_link { font-weight: 600; font-size: .95rem; color: var(--color-heading); }
+.nav_link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nav_toggle { display: inline-flex; background: none; border: 0; padding: .5rem; cursor: pointer; color: var(--color-heading); border-radius: .5rem; }
+.nav_menu { position: absolute; top: 100%; right: 0; width: min(22rem, 100%); background: #fff; border: 1px solid var(--color-border); border-top: 0; border-radius: 0 0 var(--radius-large) var(--radius-large);
+  box-shadow: var(--shadow-card); padding: var(--space-4) var(--space-5) var(--space-5); display: none; flex-direction: column; }
+.nav_menu.is-open { display: flex; }
+.nav_menu .nav_link { padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); font-size: 1.05rem; }
+.nav_menu .button_main { margin-top: var(--space-4); }
+.nav_menu_inner { position: relative; }
+
+/* ---------- hero: copy left, tile mosaic right ---------- */
+.section_hero { background: #fff; padding-block: var(--space-7) var(--space-7); }
+.hero_layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: var(--space-7); align-items: center; }
+.hero_status { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 600; font-size: .9rem; color: var(--color-heading); }
+.hero_status .icon { color: var(--color-primary); }
+.hero_title em { font-style: normal; color: var(--color-primary); }
+.hero_ticks li { display: flex; align-items: flex-start; gap: var(--space-3); font-size: .95rem; }
+.hero_ticks .icon { color: var(--color-heading); margin-top: .1rem; width: 1.15rem; height: 1.15rem; }
+.hero_cta { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hero_rule { border: 0; border-top: 1px solid var(--color-border); margin: 0; }
+.hero_trust { font-weight: 600; font-size: .95rem; color: var(--color-heading); }
+.chip_main { display: inline-flex; align-items: center; min-height: 2.5rem; padding: .4rem 1rem; border-radius: var(--radius-pill); background: #fff; border: 1px solid var(--color-border); font-weight: 600; font-size: .9rem; color: var(--color-heading); }
+.chip_main:hover { border-color: var(--color-heading); }
+
+.mosaic_wrap { position: relative; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: var(--space-4); }
+.mosaic_tile { border-radius: var(--radius-medium); padding: var(--space-5); display: flex; flex-direction: column; justify-content: flex-end; min-height: 11rem; overflow: hidden; }
+.mosaic_tile.is-navy { background: var(--swatch-navy-900); color: #fff; justify-content: center; text-align: center; min-height: 13rem; }
+.mosaic_big { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.75rem, 2rem + 3vw, 4.25rem); line-height: 1; letter-spacing: -.03em; }
+.mosaic_tile.is-navy p { margin-top: var(--space-2); font-size: 1.05rem; font-weight: 500; }
+.mosaic_tile.is-mint { background: var(--swatch-mint-100); }
+.mosaic_people { display: flex; margin-bottom: var(--space-4); }
+.mosaic_avatar { width: 3.5rem; height: 3.5rem; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-heading); font-weight: 700; color: #fff; background: var(--color-primary); border: 3px solid var(--swatch-mint-100); }
+.mosaic_avatar + .mosaic_avatar { margin-left: -.75rem; background: var(--swatch-navy-900); }
+.mosaic_caption { font-weight: 600; color: var(--color-heading); font-size: .95rem; }
+.mosaic_tile.is-tall { grid-row: 1 / span 2; grid-column: 2; background: linear-gradient(180deg, var(--swatch-mint-100), #F4FAF8); align-items: center; justify-content: flex-end; padding-top: var(--space-8); }
+.pack_box { width: 62%; aspect-ratio: 3 / 5; border-radius: .5rem; background: linear-gradient(160deg, #fff, #DCEFE8); border: 1px solid #C9E3DA; box-shadow: 0 16px 28px rgba(7,61,46,.14); display: grid; place-items: center; }
+.pack_box span { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-heading); font-weight: 700; color: var(--color-primary); letter-spacing: .02em; font-size: 1.05rem; }
+.mosaic_badge { position: absolute; top: -1.5rem; right: -.5rem; z-index: 2; width: 6rem; height: 6rem; border-radius: 50%; background: var(--swatch-navy-900); color: #fff; border: 4px solid #fff; display: grid; place-items: center; text-align: center;
+  font-family: var(--font-heading); font-weight: 700; font-size: .78rem; line-height: 1.15; transform: rotate(8deg); box-shadow: var(--shadow-soft); }
+
+/* ---------- generic section ---------- */
+.section_main { padding-block: var(--space-8); }
+.section_main.is-alt { background: var(--color-bg-alt); }
+.section_main.is-tint { background: var(--swatch-mint-100); }
+.section_head { max-width: 42rem; margin: 0 auto var(--space-7); text-align: center; display: flex; flex-direction: column; gap: var(--space-3); }
+
+/* ---------- treatments ---------- */
+.treat_grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.treat_card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-large); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); transition: box-shadow .2s, transform .2s, border-color .2s; }
+.treat_card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); border-color: transparent; }
+.treat_icon { width: 3rem; height: 3rem; border-radius: .9rem; background: var(--color-primary-tint); color: var(--color-primary); display: grid; place-items: center; }
+.treat_list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.treat_list li { font-size: var(--text-small); background: var(--swatch-forest-50); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: .2rem .7rem; color: var(--color-text); }
+.treat_link { margin-top: auto; display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 700; color: var(--color-primary); }
+.treat_link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- steps ---------- */
+.steps_grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); counter-reset: step; }
+.steps_card { background: #fff; border-radius: var(--radius-large); padding: var(--space-6); box-shadow: var(--shadow-soft); counter-increment: step; }
+.steps_card::before { content: counter(step); display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--color-primary); color: #fff; font-family: var(--font-heading); font-weight: 700; margin-bottom: var(--space-4); }
+
+/* ---------- why / features ---------- */
+.feature_grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+.feature_card { padding: var(--space-5); border-radius: var(--radius-medium); border: 1px solid var(--color-border); background: #fff; display: flex; flex-direction: column; gap: var(--space-3); }
+.feature_card .treat_icon { width: 2.75rem; height: 2.75rem; }
+
+/* ---------- clinicians ---------- */
+.team_layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--space-7); align-items: center; }
+.team_cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.team_card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-large); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+.team_avatar { width: 4rem; height: 4rem; border-radius: 50%; background: var(--color-primary); color: #fff; display: grid; place-items: center; font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; }
+.team_role { color: var(--color-cta); font-weight: 700; font-size: var(--text-small); }
+.badge_main { display: inline-block; background: var(--color-primary-tint); color: var(--color-primary-dark); font-size: .75rem; font-weight: 700; padding: .25rem .7rem; border-radius: var(--radius-pill); }
+
+/* ---------- safety panel ---------- */
+.safety_layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.safety_card { border-radius: var(--radius-large); padding: var(--space-6); border: 1px solid var(--color-border); background: #fff; }
+.safety_card.is-notice { background: var(--swatch-terracotta-100); border-color: #F0C7B3; }
+.safety_card li { display: flex; gap: var(--space-3); padding-block: var(--space-2); }
+.safety_card .icon { color: var(--color-primary); margin-top: .2rem; }
+
+/* ---------- reviews ---------- */
+.review_grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.review_card { background: #fff; border-radius: var(--radius-large); padding: var(--space-6); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; gap: var(--space-3); }
+.review_stars { color: var(--swatch-gold-500); letter-spacing: .15em; }
+.review_name { font-weight: 700; color: var(--color-heading); font-size: var(--text-small); margin-top: auto; }
+.review_note { font-size: var(--text-small); color: var(--color-text-soft); text-align: center; margin-top: var(--space-5); }
+
+/* ---------- advice ---------- */
+.advice_grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+.advice_card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-large); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
+.advice_card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+.advice_thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, var(--color-primary), var(--swatch-navy-900)); }
+.advice_body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+.advice_cat { font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-cta); }
+
+/* ---------- faq ---------- */
+.faq_list { max-width: 48rem; margin-inline: auto; }
+.faq_item { border-bottom: 1px solid var(--color-border); }
+.faq_question { width: 100%; background: none; border: 0; padding: var(--space-5) var(--space-2); display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); text-align: left; cursor: pointer;
+  font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; color: var(--color-heading); }
+.faq_question .icon { transition: transform .2s; color: var(--color-cta); }
+.faq_question[aria-expanded="true"] .icon { transform: rotate(45deg); }
+.faq_answer { padding: 0 var(--space-2) var(--space-5); color: var(--color-text-soft); }
+.faq_answer[hidden] { display: none; }
+
+/* ---------- final cta ---------- */
+.cta_wrap { border-radius: var(--radius-large); padding: var(--space-8) var(--space-6); text-align: center; background: linear-gradient(120deg, var(--color-primary), var(--color-primary-dark)); color: #fff; }
+.cta_wrap .u-text-style-h2 { color: #fff; }
+.cta_wrap p { color: rgba(255,255,255,.9); }
+
+/* ---------- footer ---------- */
+.footer_wrap { background: var(--swatch-navy-900); color: rgba(255,255,255,.85); padding-block: var(--space-8) var(--space-5); }
+.footer_grid { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: var(--space-6); }
+.footer_title { font-family: var(--font-heading); font-weight: 600; color: #fff; margin-bottom: var(--space-4); font-size: 1rem; }
+.footer_link { display: block; padding-block: .3rem; color: rgba(255,255,255,.85); font-size: var(--text-small); }
+.footer_link:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.footer_emergency { margin-top: var(--space-6); padding: var(--space-4) var(--space-5); border: 1px solid rgba(255,255,255,.3); border-radius: var(--radius-medium); font-size: var(--text-small); }
+.footer_legal { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid rgba(255,255,255,.2); font-size: .8rem; color: rgba(255,255,255,.75); display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); justify-content: space-between; }
+
+/* ---------- accessibility widget (bottom-left) ---------- */
+.a11y-fab { position: fixed; left: 1.25rem; bottom: 1.25rem; z-index: 150; display: inline-flex; align-items: center; gap: .5rem; background: var(--swatch-navy-900); color: #fff; border: 2px solid #fff; border-radius: var(--radius-pill);
+  padding: .75rem 1.1rem .75rem .9rem; cursor: pointer; font-family: var(--font-heading); font-weight: 600; font-size: .85rem; box-shadow: var(--shadow-card); }
+.a11y-fab:hover { background: var(--color-primary); }
+.a11y-fab:focus-visible, .a11y-close:focus-visible { outline: 3px solid var(--swatch-gold-500); outline-offset: 2px; }
+.a11y-panel { position: fixed; left: 1.25rem; bottom: 5.25rem; z-index: 151; width: 20rem; max-width: calc(100vw - 2.5rem); max-height: calc(100vh - 7rem); overflow-y: auto; background: #fff; color: var(--color-text); border: 1px solid var(--color-border); border-radius: var(--radius-large); box-shadow: var(--shadow-card); padding: var(--space-5); }
+.a11y-panel[hidden] { display: none; }
+.a11y-head { display: flex; justify-content: space-between; align-items: center; }
+.a11y-head h2 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--color-heading); }
+.a11y-close { background: none; border: 0; font-size: 1.6rem; line-height: 1; cursor: pointer; padding: .25rem .5rem; color: var(--color-text-soft); }
+.a11y-note { font-size: .82rem; color: var(--color-text-soft); margin: var(--space-2) 0; }
+.a11y-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); font-weight: 600; font-size: .9rem; }
+.a11y-group { display: flex; gap: .375rem; }
+.a11y-group button { min-width: 2.6rem; padding: .45rem .6rem; border-radius: .5rem; border: 1px solid var(--color-border); background: #fff; font: 700 .82rem var(--font-heading); cursor: pointer; color: var(--color-heading); }
+.a11y-group button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+.a11y-switch { position: relative; width: 2.9rem; height: 1.6rem; flex-shrink: 0; }
+.a11y-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 2; }
+.a11y-switch i { position: absolute; inset: 0; background: #AEB8B3; border-radius: 1.6rem; transition: background .15s; }
+.a11y-switch i::after { content: ""; position: absolute; top: .2rem; left: .2rem; width: 1.2rem; height: 1.2rem; background: #fff; border-radius: 50%; transition: transform .15s; }
+.a11y-switch input:checked + i { background: var(--color-primary); }
+.a11y-switch input:checked + i::after { transform: translateX(1.3rem); }
+.a11y-switch input:focus-visible + i { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+
+html[data-a11y-contrast="high"] { --color-text: #000; --color-text-soft: #111; --color-border: #000; --color-heading: #000; --color-primary: #00432F; --color-primary-dark: #002A1D; --color-cta: #8F3A14; --color-cta-hover: #6E2A0C; --color-bg-alt: #fff; --swatch-navy-900: #000; --swatch-forest-50: #fff; --swatch-forest-100: #fff; }
+html[data-a11y-contrast="high"] .section_hero { background: #fff; border-bottom: 2px solid #000; }
+html[data-a11y-spacing="wide"] { --a11y-letter-spacing: .04em; --a11y-line-height: 2; }
+html[data-a11y-links="highlight"] a:not(.button_main):not(.nav_brand):not(.chip_main):not(.treat_card):not(.advice_card) { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; background: rgba(184,90,52,.14); }
+html[data-a11y-motion="reduced"], html[data-a11y-motion="reduced"] *, html[data-a11y-motion="reduced"] *::before, html[data-a11y-motion="reduced"] *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+/* ---------- responsive ---------- */
+@media (max-width: 62rem) {
+  .hero_layout { grid-template-columns: 1fr; }
+  .team_layout { grid-template-columns: 1fr; }
+  .treat_grid, .steps_grid, .review_grid, .advice_grid { grid-template-columns: 1fr 1fr; }
+  .feature_grid { grid-template-columns: 1fr 1fr; }
+  .footer_grid { grid-template-columns: 1fr 1fr; }
+  .panel_feature { grid-template-columns: 1fr; }
+  .panel_art { min-height: 16rem; border-radius: 0; }
+  .panel_copy { padding: var(--space-7) var(--space-6); }
+}
+@media (max-width: 40rem) {
+  .treat_grid, .steps_grid, .review_grid, .advice_grid, .feature_grid, .team_cards, .safety_layout, .footer_grid { grid-template-columns: 1fr; }
+  .section_main { padding-block: var(--space-7); }
+  .section_hero { padding-block: var(--space-6); }
+  .nav_login span { display: none; }
+  .nav_actions .nav_link { display: none; }
+  .nav_brand-name { font-size: 1rem; }
+  .mosaic_wrap { grid-template-columns: 1fr 1fr; }
+  .mosaic_badge { width: 5rem; height: 5rem; font-size: .7rem; top: -1rem; }
+  .a11y-fab { left: .75rem; bottom: .75rem; padding: .75rem; }
+  .a11y-fab span { display: none; }
+  .a11y-panel { left: .75rem; bottom: 4.5rem; }
+}
+/* ---------- review ticker (Phlo-style strip) ---------- */
+.ticker_wrap { overflow: hidden; background: #fff; padding-block: var(--space-5); }
+.ticker_track { display: flex; gap: var(--space-7); width: max-content; animation: ticker 50s linear infinite; }
+.ticker_wrap:hover .ticker_track { animation-play-state: paused; }
+.ticker_item { width: 15rem; white-space: normal; display: flex; flex-direction: column; gap: var(--space-2); font-weight: 600; font-size: .9rem; color: var(--color-heading); line-height: 1.35; }
+.ticker_item .review_stars { font-size: .8rem; }
+.ticker_item small { font-weight: 400; font-size: .8rem; color: var(--color-text-soft); }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker_wrap { overflow-x: auto; } .ticker_track { animation: none; } }
+html[data-a11y-motion="reduced"] .ticker_wrap { overflow-x: auto; }
+
+/* ---------- benefits accordion + facts ---------- */
+.benefits_layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--space-7); align-items: start; }
+.benefits_list { margin: 0; max-width: none; display: flex; flex-direction: column; gap: var(--space-3); }
+.benefits_list .faq_item { background: #fff; border: 0; border-radius: var(--radius-medium); padding-inline: var(--space-4); }
+.benefit_label { display: inline-flex; align-items: center; gap: var(--space-3); }
+.benefit_label .icon { color: var(--color-primary); }
+.facts_list { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); margin-top: var(--space-7); }
+.facts_item { border: 1.5px solid var(--color-heading); border-radius: var(--radius-medium); padding: var(--space-5); background: transparent; display: flex; flex-direction: column; gap: var(--space-2); }
+.facts_item strong { font-family: var(--font-heading); font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1; color: var(--color-heading); }
+.facts_item span { color: var(--color-text-soft); font-size: var(--text-small); }
+@media (max-width: 62rem) { .benefits_layout { grid-template-columns: 1fr; } .facts_list { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 40rem) { .facts_list { grid-template-columns: 1fr; } }
+
+/* ---------- regulated band + feature panel ---------- */
+.section_regulated { background: var(--swatch-grey-100); padding-block: var(--space-7); }
+.reg_label { text-align: center; font-weight: 600; color: var(--color-heading); margin-bottom: var(--space-4); }
+.reg_list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+.reg_item { display: inline-flex; align-items: center; gap: var(--space-2); background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: .55rem 1.1rem; font-weight: 600; font-size: .9rem; color: var(--color-heading); }
+.reg_item .icon { color: var(--color-primary); }
+.panel_feature { margin-top: var(--space-7); background: #fff; border-radius: var(--radius-xl); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; min-height: 22rem; position: relative; }
+.panel_copy { padding: var(--space-8) var(--space-7); display: flex; flex-direction: column; gap: var(--space-4); justify-content: center; }
+.panel_art { background: var(--swatch-mint-100); position: relative; display: grid; place-items: center; overflow: hidden; border-top-left-radius: 14rem; border-bottom-left-radius: 14rem; }
+.panel_art .pack_box { width: 8.5rem; margin: 0; transform: rotate(-6deg); }
+.panel_stamp { position: absolute; right: 2rem; bottom: 2rem; width: 6.25rem; height: 6.25rem; border-radius: 50%; background: var(--color-cta); color: #fff; display: grid; place-items: center; text-align: center; font-family: var(--font-heading); font-weight: 700; font-size: .85rem; line-height: 1.15; transform: rotate(-10deg); }
+.url_pill { align-self: flex-start; background: var(--swatch-navy-900); color: #fff; font-family: var(--font-heading); font-weight: 600; padding: .55rem 1.25rem; border-radius: var(--radius-pill); }
+
+.advice_thumb { display: block; }
+.advice_card .u-text-style-h3 { display: block; }
+</style>
+<link rel="icon" href="data:,">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MedicalOrganization","name":"Tees Online Doctor","url":"https://www.teesonlinedoc.co.uk/","description":"Online consultations with UK-registered clinicians and discreet treatment delivery."}
+</script>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.5 20.5l10-10a4.95 4.95 0 0 0-7-7l-10 10a4.95 4.95 0 0 0 7 7z"/><path d="m8.5 8.5 7 7"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4"/><path d="M4 4h13l-2 4 2 4H4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 16V8l-9-5-9 5v8l9 5 9-5z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 2.7l5.7 5.7a8 8 0 1 1-11.3 0z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-access" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M5 8h14M12 8v6m0 0-3 7m3-7 3 7"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<div class="page_wrap">
+
+  <!-- ========== header: login left, logo centre, menu right ========== -->
+  <header class="nav_wrap">
+    <div class="u-container nav_inner">
+      <a class="button_main is-outline is-small nav_login" href="#patient-login"><svg class="icon"><use href="#i-user"/></svg><span>Log in</span></a>
+      <a class="nav_brand" href="/" aria-label="Tees Online Doctor, home">
+        <span class="nav_brand-mark" aria-hidden="true">T</span>
+        <span class="nav_brand-name">Tees Online Doctor</span>
+      </a>
+      <div class="nav_actions">
+        <a class="nav_link" href="#treatments">Treatments</a>
+        <button class="nav_toggle" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu"><svg class="icon" style="width:1.6rem;height:1.6rem"><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+    <div class="u-container nav_menu_inner">
+      <nav class="nav_menu" id="nav-menu" aria-label="Main">
+        <a class="nav_link" href="#treatments">Treatments</a>
+        <a class="nav_link" href="#how-it-works">How it works</a>
+        <a class="nav_link" href="#clinicians">Our clinicians</a>
+        <a class="nav_link" href="#advice">Advice</a>
+        <a class="nav_link" href="#faqs">FAQs</a>
+        <a class="button_main" href="#start">Start consultation <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page_main" id="main">
+
+    <!-- ========== hero ========== -->
+    <section class="section_hero">
+      <div class="u-container hero_layout">
+        <div class="u-vflex u-gap-5">
+          <p class="hero_status"><svg class="icon"><use href="#i-shield"/></svg>CQC regulated online clinic</p>
+          <h1 class="hero_title u-text-style-h1">Healthcare that fits <em>your life.</em></h1>
+          <p class="hero_trust">See a UK-registered clinician online, with treatment delivered discreetly to your door.</p>
+
+          <ul class="hero_ticks u-vflex u-gap-3">
+            <li><svg class="icon"><use href="#i-check"/></svg>Every consultation reviewed by a UK-registered clinician</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Prescribed only where it is clinically appropriate</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Free delivery in plain, unbranded packaging</li>
+          </ul>
+
+          <div class="hero_cta">
+            <a class="button_main" href="#start">Check your eligibility <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a class="button_main is-outline" href="#treatments">View all treatments</a>
+          </div>
+
+          <hr class="hero_rule">
+          <p class="hero_trust">Led by clinicians based in Teesside, serving adults across the UK</p>
+        </div>
+
+        <div class="mosaic_wrap" aria-label="At a glance">
+          <span class="mosaic_badge" aria-hidden="true">CQC<br>regulated</span>
+          <div class="mosaic_tile is-navy">
+            <span class="mosaic_big">29</span>
+            <p>common conditions, one clinician-led service</p>
+          </div>
+          <div class="mosaic_tile is-tall">
+            <div class="pack_box" aria-hidden="true"><span>Tees Online Doctor</span></div>
+            <span class="mosaic_caption" style="text-align:center;margin-top:var(--space-4)">Plain, unbranded packaging</span>
+          </div>
+          <div class="mosaic_tile is-mint">
+            <div class="mosaic_people" aria-hidden="true"><span class="mosaic_avatar">AA</span><span class="mosaic_avatar">KL</span></div>
+            <span class="mosaic_caption">Reviewed by UK-registered clinicians</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== review ticker (replace with live review widget) ========== -->
+    <section class="ticker_wrap" aria-label="Sample patient feedback">
+      <div class="ticker_track">
+        <p class="ticker_item"><span class="review_stars">★★★★★</span>Quick, clear and much easier than waiting for a GP appointment<small>Sample review</small></p>
+        <p class="ticker_item"><span class="review_stars">★★★★★</span>The questionnaire was straightforward<small>Sample review</small></p>
+        <p class="ticker_item"><span class="review_stars">★★★★☆</span>Helpful team and a smooth process<small>Sample review</small></p>
+        <p class="ticker_item"><span class="review_stars">★★★★★</span>Arrived in plain packaging, just as promised<small>Sample review</small></p>
+        <p class="ticker_item"><span class="review_stars">★★★★★</span>Clear advice about what was suitable for me<small>Sample review</small></p>
+        <p class="ticker_item" aria-hidden="true"><span class="review_stars">★★★★★</span>Quick, clear and much easier than waiting for a GP appointment<small>Sample review</small></p>
+        <p class="ticker_item" aria-hidden="true"><span class="review_stars">★★★★★</span>The questionnaire was straightforward<small>Sample review</small></p>
+        <p class="ticker_item" aria-hidden="true"><span class="review_stars">★★★★☆</span>Helpful team and a smooth process<small>Sample review</small></p>
+        <p class="ticker_item" aria-hidden="true"><span class="review_stars">★★★★★</span>Arrived in plain packaging, just as promised<small>Sample review</small></p>
+        <p class="ticker_item" aria-hidden="true"><span class="review_stars">★★★★★</span>Clear advice about what was suitable for me<small>Sample review</small></p>
+      </div>
+    </section>
+
+    <!-- ========== regulated band + feature panel ========== -->
+    <section class="section_regulated" aria-label="Regulation and registration">
+      <div class="u-container">
+        <p class="reg_label">Regulated and registered</p>
+        <ul class="reg_list">
+          <li class="reg_item"><svg class="icon"><use href="#i-shield"/></svg>Care Quality Commission</li>
+          <li class="reg_item"><svg class="icon"><use href="#i-pill"/></svg>General Pharmaceutical Council</li>
+          <li class="reg_item"><svg class="icon"><use href="#i-user"/></svg>UK-registered clinicians</li>
+          <li class="reg_item"><svg class="icon"><use href="#i-lock"/></svg>Secure, PCI-DSS payments</li>
+          <li class="reg_item"><svg class="icon"><use href="#i-flag"/></svg>UK-based support team</li>
+        </ul>
+        <div class="panel_feature">
+          <div class="panel_copy">
+            <span class="url_pill">teesonlinedoc.co.uk</span>
+            <h2 class="u-text-style-h2">Care that arrives quietly, and on your terms</h2>
+            <p class="u-text-soft u-max-width-40ch">Complete your questionnaire when it suits you. A clinician reviews it, and any treatment is delivered in plain packaging.</p>
+            <div><a class="button_main" href="#start">Start your consultation <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+          </div>
+          <div class="panel_art" aria-hidden="true">
+            <div class="pack_box"><span>Tees Online Doctor</span></div>
+            <span class="panel_stamp">Free<br>delivery</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== treatments ========== -->
+    <section class="section_main" id="treatments">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">Treatments</p>
+          <h2 class="u-text-style-h2">Care for the conditions that matter to you</h2>
+          <p class="u-text-soft">29 common conditions across six areas. Choose one to begin, and a clinician will confirm whether treatment is suitable.</p>
+        </div>
+        <div class="treat_grid">
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-activity"/></svg></span>
+            <h3 class="u-text-style-h3">Weight management</h3>
+            <ul class="treat_list"><li>Medical weight support</li><li>Weight loss</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse weight management treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-user"/></svg></span>
+            <h3 class="u-text-style-h3">Men's health</h3>
+            <ul class="treat_list"><li>Erectile dysfunction</li><li>Premature ejaculation</li><li>Hair loss</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse men's health treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-heart"/></svg></span>
+            <h3 class="u-text-style-h3">Women's health</h3>
+            <ul class="treat_list"><li>Emergency contraception</li><li>Menopause support</li><li>Period delay</li><li>Thrush</li><li>UTI</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse women's health treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+            <h3 class="u-text-style-h3">Sexual health</h3>
+            <ul class="treat_list"><li>Chlamydia</li><li>Genital herpes</li><li>Genital warts</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse sexual health treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-drop"/></svg></span>
+            <h3 class="u-text-style-h3">Skin &amp; hair</h3>
+            <ul class="treat_list"><li>Acne</li><li>Eczema</li><li>Fungal skin infection</li><li>Scabies</li><li>Nail infection</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse skin and hair treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+          <article class="treat_card">
+            <span class="treat_icon"><svg class="icon"><use href="#i-globe"/></svg></span>
+            <h3 class="u-text-style-h3">Everyday &amp; travel health</h3>
+            <ul class="treat_list"><li>Hay fever</li><li>Sinusitis</li><li>Acid reflux</li><li>IBS</li><li>Migraine</li><li>Jet lag</li><li>Malaria prevention</li></ul>
+            <a class="treat_link" href="#start" aria-label="Browse everyday and travel health treatments">Browse treatments <svg class="icon"><use href="#i-arrow"/></svg></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== how it works ========== -->
+    <section class="section_main is-alt" id="how-it-works">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">How it works</p>
+          <h2 class="u-text-style-h2">Simple, safe and discreet</h2>
+          <p class="u-text-soft">Care without the waiting room. It usually takes just a few minutes to complete your questionnaire.</p>
+        </div>
+        <ol class="steps_grid" style="margin:0;padding:0;list-style:none">
+          <li class="steps_card u-vflex u-gap-3"><h3 class="u-text-style-h3">Choose your treatment</h3><p class="u-text-soft">Find your condition and answer a short, private questionnaire about your health.</p></li>
+          <li class="steps_card u-vflex u-gap-3"><h3 class="u-text-style-h3">A clinician reviews it</h3><p class="u-text-soft">A UK-registered clinician reviews your answers and prescribes only where it is safe and appropriate.</p></li>
+          <li class="steps_card u-vflex u-gap-3"><h3 class="u-text-style-h3">Delivered to your door</h3><p class="u-text-soft">Your treatment is dispensed by a registered pharmacy and sent in plain, unbranded packaging.</p></li>
+        </ol>
+        <div class="u-text-center" style="margin-top:var(--space-7)"><a class="button_main" href="#start">Begin your assessment <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </section>
+
+    <!-- ========== benefits: accordion + facts ========== -->
+    <section class="section_main is-tint">
+      <div class="u-container">
+        <div class="benefits_layout">
+          <div class="u-vflex u-gap-4">
+            <p class="u-text-style-eyebrow">Why Tees Online Doctor</p>
+            <h2 class="u-text-style-h2">Start your safe and supported care</h2>
+            <p class="u-text-soft u-max-width-40ch">Convenient care with real clinical accountability, from a team based in Teesside.</p>
+          </div>
+          <div class="faq_list benefits_list">
+            <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="true" aria-controls="ben-1"><span class="benefit_label"><svg class="icon"><use href="#i-user"/></svg>Real clinicians, real accountability</span><svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="ben-1"><p>Named, UK-registered doctors and prescribers review every consultation against clear clinical pathways. Not an algorithm.</p></div></div>
+            <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="ben-2"><span class="benefit_label"><svg class="icon"><use href="#i-shield"/></svg>Safe and supported</span><svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="ben-2" hidden><p>Prescriptions are only issued where clinically appropriate, and we will tell you honestly if online care is not right for you. You can contact our UK-based team and your clinicians with questions after your order.</p></div></div>
+            <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="ben-3"><span class="benefit_label"><svg class="icon"><use href="#i-box"/></svg>Discreet and convenient</span><svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="ben-3" hidden><p>No waiting rooms and no pharmacy queues. Treatment is dispensed by a registered pharmacy and delivered in plain, unbranded packaging, with free delivery.</p></div></div>
+          </div>
+        </div>
+        <ul class="facts_list">
+          <li class="facts_item"><strong>29</strong><span>common conditions treated</span></li>
+          <li class="facts_item"><strong>6</strong><span>areas of care</span></li>
+          <li class="facts_item"><strong>18+</strong><span>adults across the UK</span></li>
+          <li class="facts_item"><strong>Every</strong><span>consultation reviewed by a UK-registered clinician</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== clinicians ========== -->
+    <section class="section_main is-alt" id="clinicians">
+      <div class="u-container team_layout">
+        <div class="u-vflex u-gap-4">
+          <p class="u-text-style-eyebrow">Meet your clinicians</p>
+          <h2 class="u-text-style-h2">Real people. Real accountability.</h2>
+          <p class="u-text-soft u-max-width-40ch">Every consultation is reviewed by a UK-registered clinician working to clear clinical governance. Our founding clinicians have worked across the NHS and private practice.</p>
+          <div><a class="button_main is-outline" href="#about">Meet the team</a></div>
+        </div>
+        <div class="team_cards">
+          <article class="team_card">
+            <span class="team_avatar" aria-hidden="true">AA</span>
+            <div><h3 class="u-text-style-h3">Dr Adewunmi Ashiru</h3><p class="team_role">Clinical Lead and co-founder</p></div>
+            <p class="u-text-soft">Over 20 years across hospitals, community services and general practice. NHS GP partner and GP educator in Teesside.</p>
+            <div><span class="badge_main">GMC registered</span></div>
+          </article>
+          <article class="team_card">
+            <span class="team_avatar" aria-hidden="true">KL</span>
+            <div><h3 class="u-text-style-h3">Kighir Lam</h3><p class="team_role">Clinical pharmacist and co-founder</p></div>
+            <p class="u-text-soft">Close to two decades as a clinical pharmacist and independent prescriber, across emergency, community and telemedicine settings.</p>
+            <div><span class="badge_main">GPhC registered</span> <span class="badge_main">Independent prescriber</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== safety ========== -->
+    <section class="section_main">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">Safe care</p>
+          <h2 class="u-text-style-h2">Designed for safety, not just speed</h2>
+        </div>
+        <div class="safety_layout">
+          <div class="safety_card">
+            <h3 class="u-text-style-h3">What you can expect</h3>
+            <ul>
+              <li><svg class="icon"><use href="#i-check"/></svg>A proper clinical assessment before any prescription</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Honest advice. If online care is not right for you, we will say so and point you to your GP or another service</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Medicines supplied through a registered UK pharmacy</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Your health information is kept secure and private</li>
+            </ul>
+          </div>
+          <div class="safety_card is-notice">
+            <h3 class="u-text-style-h3">Not an emergency service</h3>
+            <p>If you are experiencing a medical emergency, such as chest pain, severe bleeding or difficulty breathing, call <strong>999</strong> immediately or go to your nearest A&amp;E.</p>
+            <p style="margin-top:var(--space-3)">Tees Online Doctor does not replace your NHS GP. We complement existing care for conditions that are safe to manage online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== reviews ========== -->
+    <section class="section_main is-alt" id="reviews">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">Patient feedback</p>
+          <h2 class="u-text-style-h2">What patients say</h2>
+        </div>
+        <!-- Replace with the review widget (Trustpilot / Doctify / Reviews.io) once real reviews exist -->
+        <div class="review_grid">
+          <figure class="review_card" style="margin:0"><span class="review_stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote style="margin:0"><p>Quick, clear and much easier than waiting for a GP appointment.</p></blockquote><figcaption class="review_name">Sample review</figcaption></figure>
+          <figure class="review_card" style="margin:0"><span class="review_stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote style="margin:0"><p>The questionnaire was straightforward and my order arrived in plain packaging.</p></blockquote><figcaption class="review_name">Sample review</figcaption></figure>
+          <figure class="review_card" style="margin:0"><span class="review_stars" role="img" aria-label="4 out of 5 stars">★★★★☆</span><blockquote style="margin:0"><p>Helpful team and a smooth process from start to finish.</p></blockquote><figcaption class="review_name">Sample review</figcaption></figure>
+        </div>
+        <p class="review_note">Sample layout for design review. Real, verifiable patient reviews will replace these before launch.</p>
+      </div>
+    </section>
+
+    <!-- ========== advice ========== -->
+    <section class="section_main" id="advice">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">Advice hub</p>
+          <h2 class="u-text-style-h2">Guides to support your health</h2>
+        </div>
+        <div class="advice_grid">
+          <a class="advice_card" href="#"><span class="advice_thumb" aria-hidden="true"></span><span class="advice_body"><span class="advice_cat">Weight management</span><span class="u-text-style-h3">What to know before starting a weight loss consultation</span><span class="u-text-soft">6 min read</span></span></a>
+          <a class="advice_card" href="#"><span class="advice_thumb" aria-hidden="true"></span><span class="advice_body"><span class="advice_cat">Everyday health</span><span class="u-text-style-h3">A practical guide to managing hay fever</span><span class="u-text-soft">5 min read</span></span></a>
+          <a class="advice_card" href="#"><span class="advice_thumb" aria-hidden="true"></span><span class="advice_body"><span class="advice_cat">Travel health</span><span class="u-text-style-h3">Planning a trip? What to sort before you go</span><span class="u-text-soft">4 min read</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== faqs ========== -->
+    <section class="section_main is-alt" id="faqs">
+      <div class="u-container">
+        <div class="section_head">
+          <p class="u-text-style-eyebrow">FAQs</p>
+          <h2 class="u-text-style-h2">Questions, answered</h2>
+        </div>
+        <div class="faq_list">
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-1">What is Tees Online Doctor?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-1" hidden><p>Tees Online Doctor is a UK-based online medical service for adults aged 18 and over. We provide consultations with qualified, UK-registered clinicians for a range of common conditions that are safe to manage online.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-2">Is this a replacement for my GP?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-2" hidden><p>No. We complement your NHS GP by offering convenient access for certain conditions. We may advise you to contact your GP or another service if your needs are better met elsewhere.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-3">Who can use the service?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-3" hidden><p>Anyone aged 18 or over living in the UK, provided their condition is suitable for online assessment.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-4">Can you prescribe medication?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-4" hidden><p>Yes, where clinically appropriate. Prescriptions are only issued following a proper medical assessment and in line with clinical guidelines. Not every consultation results in a prescription.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-5">Are your clinicians qualified?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-5" hidden><p>Yes. All consultations are carried out by appropriately qualified, UK-registered doctors or prescribers who follow clear clinical pathways and governance processes.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-6">Is my delivery discreet?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-6" hidden><p>Yes. Orders are sent in plain, unbranded packaging that does not show what is inside.</p></div></div>
+          <div class="faq_item"><h3><button class="faq_question" type="button" aria-expanded="false" aria-controls="faq-7">Is the service safe?<svg class="icon"><use href="#i-plus"/></svg></button></h3><div class="faq_answer" id="faq-7" hidden><p>Patient safety is our priority. We work within defined clinical limits, use structured assessments and have clear escalation processes for emergencies and safeguarding concerns.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== final cta (Semble entry point) ========== -->
+    <section class="section_main" id="start">
+      <div class="u-container">
+        <div class="cta_wrap u-vflex u-gap-4" style="align-items:center">
+          <h2 class="u-text-style-h2">Ready to feel better?</h2>
+          <p class="u-max-width-56ch">Start your online consultation today. It takes a few minutes, and a clinician reviews every answer.</p>
+          <!-- Semble online booking / questionnaire is embedded on the Get Started page. Link target set when the Semble account is live. -->
+          <div class="hero_cta" style="justify-content:center">
+            <a class="button_main is-light" href="#start">Start your consultation <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a class="button_main is-ghost-light" href="#treatments">View all treatments</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== footer ========== -->
+  <footer class="footer_wrap">
+    <div class="u-container">
+      <div class="footer_grid">
+        <div class="u-vflex u-gap-3">
+          <a class="nav_brand" href="/" aria-label="Tees Online Doctor, home"><span class="nav_brand-mark" aria-hidden="true">T</span><span class="nav_brand-name" style="color:#fff">Tees Online Doctor</span></a>
+          <p style="font-size:var(--text-small);max-width:34ch">Regulated online consultations and treatment for common conditions, from a Teesside-based clinical team.</p>
+        </div>
+        <div><p class="footer_title">Treatments</p>
+          <a class="footer_link" href="#treatments">Weight management</a><a class="footer_link" href="#treatments">Men's health</a><a class="footer_link" href="#treatments">Women's health</a><a class="footer_link" href="#treatments">Sexual health</a><a class="footer_link" href="#treatments">Skin &amp; hair</a><a class="footer_link" href="#treatments">Everyday &amp; travel health</a></div>
+        <div><p class="footer_title">Company</p>
+          <a class="footer_link" href="#how-it-works">How it works</a><a class="footer_link" href="#clinicians">Our clinicians</a><a class="footer_link" href="#advice">Advice hub</a><a class="footer_link" href="#faqs">FAQs</a><a class="footer_link" href="#">Contact us</a></div>
+        <div><p class="footer_title">Support</p>
+          <a class="footer_link" href="#">Delivery &amp; returns</a><a class="footer_link" href="#">Prescription safety</a><a class="footer_link" href="#patient-login">Patient login</a><a class="footer_link" href="#">Accessibility statement</a></div>
+      </div>
+      <p class="footer_emergency"><strong>Not an emergency service.</strong> In a medical emergency call 999 or go to your nearest A&amp;E.</p>
+      <div class="footer_legal">
+        <span>© 2026 Tees Online Doctor Ltd · Company No. 17146083 · CQC registered provider</span>
+        <span><a class="footer_link" style="display:inline" href="#">Privacy policy</a> · <a class="footer_link" style="display:inline" href="#">Terms of service</a> · <a class="footer_link" style="display:inline" href="#">Cookie policy</a></span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========== accessibility widget (bottom-left) ========== -->
+<button class="a11y-fab" type="button" aria-label="Open accessibility settings" aria-expanded="false" aria-controls="a11y-panel">
+  <svg class="icon" style="width:1.5rem;height:1.5rem"><use href="#i-access"/></svg><span>Accessibility</span>
+</button>
+<div class="a11y-panel" id="a11y-panel" role="dialog" aria-label="Accessibility settings" hidden>
+  <div class="a11y-head"><h2>Accessibility</h2><button class="a11y-close" type="button" aria-label="Close accessibility settings">&times;</button></div>
+  <p class="a11y-note">Adjust how this site looks and behaves. Your choices are saved on this device.</p>
+  <div class="a11y-row"><span>Text size</span>
+    <div class="a11y-group" role="group" aria-label="Text size">
+      <button type="button" data-font-btn="1" aria-pressed="true" aria-label="Default text size">A</button>
+      <button type="button" data-font-btn="1.15" aria-pressed="false" aria-label="Larger text">A+</button>
+      <button type="button" data-font-btn="1.3" aria-pressed="false" aria-label="Largest text">A++</button>
+    </div></div>
+  <div class="a11y-row"><span id="l-contrast">High contrast</span><label class="a11y-switch"><input type="checkbox" data-a11y-switch="contrast" aria-labelledby="l-contrast"><i></i></label></div>
+  <div class="a11y-row"><span id="l-spacing">Wider text spacing</span><label class="a11y-switch"><input type="checkbox" data-a11y-switch="spacing" aria-labelledby="l-spacing"><i></i></label></div>
+  <div class="a11y-row"><span id="l-links">Highlight links</span><label class="a11y-switch"><input type="checkbox" data-a11y-switch="links" aria-labelledby="l-links"><i></i></label></div>
+  <div class="a11y-row"><span id="l-motion">Reduce motion</span><label class="a11y-switch"><input type="checkbox" data-a11y-switch="motion" aria-labelledby="l-motion"><i></i></label></div>
+  <button class="button_main is-outline is-small" style="width:100%;margin-top:var(--space-4)" type="button" data-a11y-reset>Reset to default</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // Mobile menu
+  var toggle = document.querySelector('.nav_toggle');
+  var menu = document.getElementById('nav-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    function closeMenu(focusBack) {
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      if (focusBack) toggle.focus();
+    }
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) closeMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menu.classList.contains('is-open')) closeMenu(true); });
+    document.addEventListener('click', function (e) {
+      if (menu.classList.contains('is-open') && !menu.contains(e.target) && !toggle.contains(e.target)) closeMenu(false);
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq_question').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var panel = document.getElementById(btn.getAttribute('aria-controls'));
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      if (panel) panel.hidden = open;
+    });
+  });
+
+  // Accessibility widget
+  var fab = document.querySelector('.a11y-fab');
+  var panel = document.querySelector('.a11y-panel');
+  if (!fab || !panel) return;
+  var root = document.documentElement;
+  var KEY = 'tod-a11y-prefs';
+  var defaults = { scale: '1', contrast: false, spacing: false, links: false, motion: false };
+  var prefs = Object.assign({}, defaults);
+  try { prefs = Object.assign(prefs, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(prefs)); } catch (e) {} }
+  function flag(name, on, value) { on ? root.setAttribute(name, value) : root.removeAttribute(name); }
+
+  function apply() {
+    root.style.setProperty('--a11y-font-scale', prefs.scale);
+    flag('data-a11y-contrast', prefs.contrast, 'high');
+    flag('data-a11y-spacing', prefs.spacing, 'wide');
+    flag('data-a11y-links', prefs.links, 'highlight');
+    flag('data-a11y-motion', prefs.motion, 'reduced');
+    document.querySelectorAll('[data-font-btn]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-font-btn') === String(prefs.scale)));
+    });
+    ['contrast', 'spacing', 'links', 'motion'].forEach(function (k) {
+      var el = document.querySelector('[data-a11y-switch="' + k + '"]');
+      if (el) el.checked = !!prefs[k];
+    });
+  }
+  function openPanel() { panel.hidden = false; fab.setAttribute('aria-expanded', 'true'); panel.querySelector('.a11y-close').focus(); }
+  function closePanel(focusBack) { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); if (focusBack) fab.focus(); }
+
+  apply();
+  fab.addEventListener('click', function () { panel.hidden ? openPanel() : closePanel(true); });
+  panel.querySelector('.a11y-close').addEventListener('click', function () { closePanel(true); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) closePanel(true); });
+  document.addEventListener('click', function (e) {
+    if (!panel.hidden && !panel.contains(e.target) && !fab.contains(e.target)) closePanel(false);
+  });
+  document.querySelectorAll('[data-font-btn]').forEach(function (b) {
+    b.addEventListener('click', function () { prefs.scale = b.getAttribute('data-font-btn'); apply(); save(); });
+  });
+  document.querySelectorAll('[data-a11y-switch]').forEach(function (sw) {
+    sw.addEventListener('change', function () { prefs[sw.getAttribute('data-a11y-switch')] = sw.checked; apply(); save(); });
+  });
+  document.querySelector('[data-a11y-reset]').addEventListener('click', function () { prefs = Object.assign({}, defaults); apply(); save(); });
+})();
+</script>
+</body>
+</html>
